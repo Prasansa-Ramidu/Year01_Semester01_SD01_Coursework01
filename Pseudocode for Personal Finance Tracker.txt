@@ -1,0 +1,152 @@
+# Import the json module for handling JSON files
+import json
+# Import the re module for working with regular expressions
+import re
+# Define file path for storing transaction data
+json_file_path = "Financial_Transactions.json"
+
+# Global list to store transaction data
+Transaction = []
+
+# Function to load transaction data from JSON file
+function load_data():
+    try:
+        open json_file_path in read mode
+        read data from file and parse JSON
+        assign parsed data to Transaction list
+        return Transaction
+    except FileNotFoundError:
+        return an empty list
+    except JSONDecodeError:
+        return an empty list
+
+# Function to save transaction data to JSON file
+function save_data():
+    try:
+        open json_file_path in write mode
+        convert Transaction list to JSON format
+        write JSON data to file
+    except IOError:
+        print "Error saving data to file"
+
+# Function to check if date format is valid
+function check_date_format(date):
+    match_check = search for date format pattern in date string
+    if match_check:
+        split date string into parts
+        if month and day parts are valid:
+            return true
+    return false
+
+# Function to add a new transaction
+function add_transaction():
+    try:
+        prompt user for transaction details: amount, category, type, date
+        if type is "Expense":
+            convert amount to negative value
+        if date format is valid:
+            generate unique ID for transaction
+            create transaction record
+            add transaction to Transaction list
+            save Transaction data to JSON file
+            print "Transaction added successfully"
+        else:
+            print "Invalid date format"
+    except ValueError:
+        print "Invalid input. Please try again."
+
+# Function to view a transaction
+function view_transaction():
+    if Transaction is empty:
+        print "Transaction found"
+    else:
+        try:
+            prompt user for transaction ID to view
+            search for transaction with specified ID in Transaction list
+            if transaction found:
+                print transaction details
+            else:
+                print "Transaction with specified ID not found"
+        except ValueError:
+            print "Invalid input. Please enter a valid integer for transaction ID"
+
+# Function to update a transaction
+function update_transaction():
+    if Transaction is empty:
+        print "No transactions found"
+    else:
+        try:
+            prompt user for transaction ID to update
+            search for transaction with specified ID in Transaction list
+            if transaction found:
+                prompt user for new transaction details: amount, category, type, date
+                if type is "Expense":
+                    convert amount to negative value
+                if date format is valid:
+                    update transaction details
+                    save Transaction data to JSON file
+                    print "Transaction updated successfully"
+                else:
+                    print "Invalid date format"
+            else:
+                print "Transaction with specified ID not found"
+        except ValueError:
+            print "Invalid input. Please enter a valid integer for transaction ID"
+
+# Function to delete a transaction
+function delete_transaction():
+    if Transaction is empty:
+        print "No transactions found"
+    else:
+        try:
+            prompt user for transaction ID to delete
+            search for transaction with specified ID in Transaction list
+            if transaction found:
+                remove transaction from Transaction list
+                save Transaction data to JSON file
+                print "Transaction deleted successfully"
+            else:
+                print "Transaction with specified ID not found"
+        except ValueError:
+            print "Invalid input. Please enter a valid integer for transaction ID"
+
+# Function to display summary of all transactions
+function display_summary():
+    if Transaction is empty:
+        print "No transactions found"
+    else:
+        calculate total balance from all transactions
+        print total balance
+
+# Function to add transactions loaded from JSON to Transaction list
+function add_transactions_to_list(returned_list):
+    try:
+        for each transaction record in returned_list:
+            add transaction record to Transaction list
+    except ValueError:
+        print "Invalid input. Please try again."
+
+# Main menu function
+function menu():  
+    display main menu options
+    loop:
+        prompt user for menu choice
+        if choice is '1':
+            add_transaction()
+        elif choice is '2':
+            view_transaction()
+        elif choice is '3':
+            update_transaction()
+        elif choice is '4':
+            delete_transaction()
+        elif choice is '5':
+            display_summary()
+        elif choice is '6':
+            exit program
+        else:
+            print "Invalid choice. Please try again."
+
+load transaction data from JSON file
+add loaded transactions to Transaction list
+# Start the program
+menu()
